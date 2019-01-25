@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    #region Variables
     public float maxSpeed;
     public float acceleration;
     public float steering;
 
-    private Rigidbody2D rb;
+    public float boostMaxSpeed;
+    public float boostAcceleration;
+
+    public float boostTime;
+
     float currentSpeed;
+    #endregion
+
+    private Rigidbody2D rb;
 
     private void Start()
     {
@@ -40,8 +47,11 @@ public class PlayerController : MonoBehaviour
 
         // Change velocity based on rotation
         float driftForce = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.left)) * 2.0f;
+
         Vector2 relativeForce = Vector2.right * driftForce;
+
         Debug.DrawLine(rb.position, rb.GetRelativePoint(relativeForce), Color.green);
+
         rb.AddForce(rb.GetRelativeVector(relativeForce));
 
         // Force max speed limit
@@ -50,6 +60,20 @@ public class PlayerController : MonoBehaviour
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
         currentSpeed = rb.velocity.magnitude;
+
+
+        if (Input.GetButtonDown("Shift"))
+        {
+            StartCoroutine(Boost());
+        }
+    }
+
+    IEnumerator Boost()
+    {
+        maxSpeed = boostMaxSpeed;
+        acceleration = boostAcceleration;
+
+        yield return new WaitForSeconds(boostTime);
     }
 
 }
