@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NeonController : MonoBehaviour
+public class NeonController2 : MonoBehaviour
 {
 
     #region Energy Values//Life Points
@@ -10,7 +10,7 @@ public class NeonController : MonoBehaviour
     float energy;
     [SerializeField]
     float energyRechargeAmount;
-    float rechargeCooldownTimer= 5f; 
+    float rechargeCooldownTimer = 5f;
     #endregion
 
     #region Base Values//Movement
@@ -51,7 +51,7 @@ public class NeonController : MonoBehaviour
     private ParticleSystem particle;
     private Collider2D collider;
     #endregion
-    
+
     #region MonoBehavior Callbacks
     // Start is called before the first frame update
     void Start()
@@ -63,7 +63,7 @@ public class NeonController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(energy > 0)
+        if (energy > 0)
         {
             Debug.Log(Mathf.Floor(energy));
             Move();
@@ -80,14 +80,14 @@ public class NeonController : MonoBehaviour
     private void Move()
     {
         #region Movement
-        float horizontal = -Input.GetAxis("P1_Horizontal");
+        float horizontal = -Input.GetAxis("P2_Horizontal");
 
         rb.AddForce(transform.up * speed); //auto-movement
 
         rb.AddForce(transform.right * (horizontal * speed)); //rotation based on player input
         #endregion
         // Get inputs for basic movement
-        
+
         #region Rotation
         float direction = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up));
 
