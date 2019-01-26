@@ -41,15 +41,13 @@ public class NeonController : MonoBehaviour
     private ParticleSystem particle;
     private Collider2D collider;
     #endregion
-
-    //MONOBEHAVIOR
+    
     #region MonoBehavior Callbacks
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         speed = baseSpeed;
-        lastPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -59,29 +57,12 @@ public class NeonController : MonoBehaviour
         {
             Debug.Log(Mathf.Floor(energy));
             Move();
-
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                if (speed == baseSpeed)
-                {
-                    StartCoroutine(Boost());
-                }
-            }
-         }
+        }
 
         else
         {
             //nothing
         }
-
-        //Mathf.Floor(distanceTravelled += Vector2.Distance(transform.position, lastPosition));
-        //lastPosition = transform.position;
-        float energyLeft = energy - Vector2.Distance(transform.position, lastPosition);
-
-        Debug.Log("I have travelled : " + Mathf.Floor(distanceTravelled));
-
-        energy = energyLeft;
-        Debug.Log("I have " + energy + " energy left");
     }
     #endregion
 
@@ -110,7 +91,7 @@ public class NeonController : MonoBehaviour
             rb.rotation -= horizontal * driftAmount * (rb.velocity.magnitude / maxSpeed);
         }
         #endregion
-        // Create car rotation
+        // Create Neon rotation
 
         #region Drifting
         float driftForce = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.left));
@@ -123,7 +104,16 @@ public class NeonController : MonoBehaviour
         #endregion
         // Change velocity based on rotation
 
-        currentSpeed = rb.velocity;
+        float currentSpeedX = rb.velocity.magnitude;
+
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            if (speed == baseSpeed)
+            {
+                StartCoroutine(Boost());
+            }
+        }
+
     }
 
     IEnumerator Boost()
