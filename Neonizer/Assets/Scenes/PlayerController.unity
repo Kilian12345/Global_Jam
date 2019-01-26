@@ -187,7 +187,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4982,7 +4982,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092721411}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.6, y: -0.7, z: -0.09889807}
+  m_LocalPosition: {x: -4.33, y: -0.43, z: -0.09889807}
   m_LocalScale: {x: 0.37873578, y: 0.37873578, z: 0.37873578}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5125,14 +5125,14 @@ MonoBehaviour:
   neonFuel: 10
   fuelRecharge: 10
   deathTimer: 3
-  fuelRechargeTimer: 0
+  fuelRechargeTimer: 6
   maxSpeed: 150
   baseAcceleration: 50
   driftAmount: 200
   boostTime: 5
   currentSpeed: 0
   boostMultiplier: 3
-  slowedModifier: 0.5
+  slowedModifier: 0.05
 --- !u!61 &3834273620524977169
 BoxCollider2D:
   m_ObjectHideFlags: 0

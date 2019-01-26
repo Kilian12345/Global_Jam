@@ -29,6 +29,7 @@ public class PlayerEnergyController : MonoBehaviour
     float boostAcceleration;
     [SerializeField]
     float boostTime;
+    bool isBoosting = false;
 
     //SLOW VALUES
     float slowedAcceleration;
@@ -66,7 +67,10 @@ public class PlayerEnergyController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                StartCoroutine(Boost());
+                if(acceleration == baseAcceleration)
+                {
+                    StartCoroutine(Boost());
+                }
             }
             neonFuel -= Time.deltaTime;
         }
@@ -107,9 +111,9 @@ public class PlayerEnergyController : MonoBehaviour
         #endregion
 
         // Change velocity based on rotation
-        float driftForce = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.left)) * 2.0f;
+        float driftForce = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.left)) ;
 
-        Vector2 relativeForce = Vector2.right * driftForce;
+        Vector2 relativeForce = Vector2.right * driftForce * 0.00005f;
 
         Debug.DrawLine(rb.position, rb.GetRelativePoint(relativeForce), Color.green);
 
@@ -127,19 +131,21 @@ public class PlayerEnergyController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("I have collided");
+
         if (collision.gameObject.name == "Refuel Station")
         {
             neonFuel = neonFuel + fuelRecharge;
             acceleration = baseAcceleration;
+            StartCoroutine(SlowDown());
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         Debug.Log("I have exited");
-        StartCoroutine(SlowDown());
+        acceleration = baseAcceleration;
     }
-
+    
     IEnumerator Death()
     {
         yield return new WaitForSeconds(deathTimer);
@@ -148,6 +154,7 @@ public class PlayerEnergyController : MonoBehaviour
 
     IEnumerator Boost()
     {
+        isBoosting = true;
         boostAcceleration = baseAcceleration * boostMultiplier;
         acceleration = boostAcceleration;
 
@@ -158,6 +165,11 @@ public class PlayerEnergyController : MonoBehaviour
 
     IEnumerator SlowDown()
     {
+        if(isBoosting == true) //set player speed back to normal
+        {
+            acceleration = baseAcceleration;
+        }
+
         slowedAcceleration = baseAcceleration * slowedModifier;
         acceleration = slowedAcceleration;
 
