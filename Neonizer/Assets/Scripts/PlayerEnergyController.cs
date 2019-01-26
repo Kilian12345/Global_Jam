@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerEnergyController : MonoBehaviour
 {
     #region Variables
+    float neonFuel = 10f;
+    float deathTimer = 3f;
+
     public float maxSpeed;
     public float baseAcceleration;
     float acceleration;
@@ -19,9 +22,8 @@ public class PlayerController : MonoBehaviour
     public float boostMultiplier = 3;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private ParticleSystem particle;
-
-
     #endregion
 
     #region Monobehavior Callbacks
@@ -29,16 +31,28 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         acceleration = baseAcceleration;
     }
 
     private void FixedUpdate()
     {
-        Movement();
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        neonFuel -= Time.deltaTime;
+
+        if (neonFuel > 0)
         {
-            StartCoroutine(Boost());
+            Debug.Log(Mathf.Floor(neonFuel));
+            Movement();
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                StartCoroutine(Boost());
+            }
+        }
+        else
+        {
+            StartCoroutine(Death());
         }
     }
 
@@ -90,6 +104,12 @@ public class PlayerController : MonoBehaviour
         currentSpeed = rb.velocity.magnitude;
     }
 
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(deathTimer);
+        Destroy(sr);
+    }
+
     IEnumerator Boost()
     {
         boostAcceleration = baseAcceleration * boostMultiplier;
@@ -97,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(boostTime);
         acceleration = baseAcceleration;
-        Debug.Log("put");
+        Debug.Log("Wallah je boost plus");
     }
     #endregion
 
