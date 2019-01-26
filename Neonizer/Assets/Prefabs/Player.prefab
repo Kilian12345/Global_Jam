@@ -181,9 +181,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9729e0e074bc2a4e8c1127947df31ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 100
-  acceleration: 20
-  steering: 200
+  maxSpeed: 150
+  baseAcceleration: 50
+  driftAmount: 200
+  boostTime: 5
+  boostMultiplier: 3
 --- !u!50 &3834273621086361701
 Rigidbody2D:
   serializedVersion: 4

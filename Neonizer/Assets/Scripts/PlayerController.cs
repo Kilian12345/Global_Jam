@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     #region Variables
     public float maxSpeed;
     public float baseAcceleration;
-    public float acceleration;
-    public float steering;
+    float acceleration;
+    public float driftAmount;
 
     float boostMaxSpeed;
     float boostAcceleration;
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public float boostTime;
 
     float currentSpeed;
-    public float Juice = 3;
+    public float boostMultiplier = 3;
 
 
     #endregion
@@ -48,12 +48,12 @@ public class PlayerController : MonoBehaviour
 
         if (direction >= 0.0f)
         {
-            rb.rotation += horizontal * steering * (rb.velocity.magnitude / maxSpeed);
+            rb.rotation += horizontal * driftAmount * (rb.velocity.magnitude / maxSpeed);
         }
 
         else
         {
-            rb.rotation -= horizontal * steering * (rb.velocity.magnitude / maxSpeed);
+            rb.rotation -= horizontal * driftAmount * (rb.velocity.magnitude / maxSpeed);
         }
 
         // Change velocity based on rotation
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Boost()
     {
-        boostAcceleration = baseAcceleration * Juice;
+        boostAcceleration = baseAcceleration * boostMultiplier;
         acceleration = boostAcceleration;
         yield return new WaitForSeconds(boostTime);
         acceleration = baseAcceleration;
