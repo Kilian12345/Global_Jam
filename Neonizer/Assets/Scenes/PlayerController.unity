@@ -5122,13 +5122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae0c709e01a815458a738f3fcc282a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neonEnergy: 10
+  energy: 500
   energyRechargeAmount: 10
-  speed: 10
-  currentSpeed: 10
-  maxSpeed: 10
-  baseSpeed: 10
-  driftAmount: 10
+  speed: 50
+  driftAmount: 100
+  boostTimeLeft: 2
+  boostSpeedMultiplier: 4
 --- !u!61 &3834273620524977169
 BoxCollider2D:
   m_ObjectHideFlags: 0

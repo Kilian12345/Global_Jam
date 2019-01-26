@@ -7,20 +7,17 @@ public class NeonController : MonoBehaviour
 
     #region Energy Values//Life Points
     [SerializeField]
-    float neonEnergy;
+    float energy;
     [SerializeField]
     float energyRechargeAmount;
     #endregion
 
     #region Base Values//Movement
     [SerializeField]
-    float speed;
-    [SerializeField]
-    float baseSpeed;
-    [SerializeField]
+    float speed = 50;
+    float baseSpeed = 50;
     float currentSpeed;
-    [SerializeField]
-    float maxSpeed;
+    float maxSpeed = 200;
     [SerializeField]
     float driftAmount;
 
@@ -58,9 +55,9 @@ public class NeonController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(neonEnergy > 0)
+        if(energy > 0)
         {
-            Debug.Log(Mathf.Floor(neonEnergy));
+            Debug.Log(Mathf.Floor(energy));
             Move();
 
             if (Input.GetKey(KeyCode.LeftShift))
@@ -70,13 +67,21 @@ public class NeonController : MonoBehaviour
                     StartCoroutine(Boost());
                 }
             }
+         }
 
+        else
+        {
+            //nothing
         }
 
-        Mathf.Floor(distanceTravelled += Vector2.Distance(transform.position, lastPosition));
-        lastPosition = transform.position;
+        //Mathf.Floor(distanceTravelled += Vector2.Distance(transform.position, lastPosition));
+        //lastPosition = transform.position;
+        float energyLeft = energy - Vector2.Distance(transform.position, lastPosition);
 
-        Debug.Log(distanceTravelled);
+        Debug.Log("I have travelled : " + Mathf.Floor(distanceTravelled));
+
+        energy = energyLeft;
+        Debug.Log("I have " + energy + " energy left");
     }
     #endregion
 
@@ -117,6 +122,8 @@ public class NeonController : MonoBehaviour
         rb.AddForce(rb.GetRelativeVector(relativeForce));
         #endregion
         // Change velocity based on rotation
+
+        currentSpeed = rb.velocity;
     }
 
     IEnumerator Boost()
@@ -129,6 +136,7 @@ public class NeonController : MonoBehaviour
         speed = baseSpeed;
         Debug.Log("I Am No Longer Boosting");
     }
+
 
     #endregion
 }
