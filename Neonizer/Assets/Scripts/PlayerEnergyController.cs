@@ -12,6 +12,8 @@ public class PlayerEnergyController : MonoBehaviour
     float fuelRecharge;
     [SerializeField]
     float deathTimer;
+    [SerializeField]
+    floats fuelRechargeTimer;
 
     //BASE VALUES
     float acceleration;
@@ -31,7 +33,7 @@ public class PlayerEnergyController : MonoBehaviour
     //SLOW VALUES
     float slowedAcceleration;
     float slowedMaxSpeed;
-
+    
     //SPEED MULTIPLIERS
     [SerializeField]
     float currentSpeed;
@@ -125,7 +127,13 @@ public class PlayerEnergyController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("I have collided");
-        neonFuel += fuelRecharge;
+        neonFuel = neonFuel + fuelRecharge;
+        acceleration = baseAcceleration;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("I have exited");
         StartCoroutine(SlowDown());
     }
 
@@ -149,8 +157,8 @@ public class PlayerEnergyController : MonoBehaviour
     {
         slowedAcceleration = baseAcceleration * slowedModifier;
         acceleration = slowedAcceleration;
-        
-        yield return new WaitForSeconds (2);
+
+        yield return new WaitForSeconds (fuelRechargeTimer);
     }
 
     #endregion
