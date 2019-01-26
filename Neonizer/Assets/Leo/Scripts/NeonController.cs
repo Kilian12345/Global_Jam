@@ -4,39 +4,48 @@ using UnityEngine;
 
 public class NeonController : MonoBehaviour
 {
-    #region Variables
 
-    #region Energy Values
+    #region Energy Values//Life Points
     [SerializeField]
     float neonEnergy;
     [SerializeField]
     float energyRechargeAmount;
     #endregion
 
-    #region Base Values
+    #region Base Values//Movement
     [SerializeField]
     float speed;
+    [SerializeField]
+    float baseSpeed;
     [SerializeField]
     float currentSpeed;
     [SerializeField]
     float maxSpeed;
     [SerializeField]
-    float baseSpeed;
-    [SerializeField]
     float driftAmount;
+
     float distanceTravelled = 0;
     #endregion
 
-    #region Intantiates
+    #region Boost Values//Speed Boost
+    bool isBoosting;
+    float boostSpeed;
+    [SerializeField]
+    float boostTimeLeft;
+    [SerializeField]
+    float boostSpeedMultiplier;
+    #endregion
+
+    #region Intantiates//Objects, etc.
     Vector2 lastPosition;
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private ParticleSystem particle;
     private Collider2D collider;
     #endregion
 
-    #endregion
-
+    //MONOBEHAVIOR
     #region MonoBehavior Callbacks
     // Start is called before the first frame update
     void Start()
@@ -53,6 +62,15 @@ public class NeonController : MonoBehaviour
         {
             Debug.Log(Mathf.Floor(neonEnergy));
             Move();
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (speed == baseSpeed)
+                {
+                    StartCoroutine(Boost());
+                }
+            }
+
         }
 
         Mathf.Floor(distanceTravelled += Vector2.Distance(transform.position, lastPosition));
@@ -100,5 +118,17 @@ public class NeonController : MonoBehaviour
         #endregion
         // Change velocity based on rotation
     }
+
+    IEnumerator Boost()
+    {
+        isBoosting = true;
+        boostSpeed = baseSpeed * boostSpeedMultiplier;
+        speed = boostSpeed;
+
+        yield return new WaitForSeconds(boostTimeLeft);
+        speed = baseSpeed;
+        Debug.Log("I Am No Longer Boosting");
+    }
+
     #endregion
 }
