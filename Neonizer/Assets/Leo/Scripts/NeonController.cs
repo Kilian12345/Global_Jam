@@ -10,6 +10,7 @@ public class NeonController : MonoBehaviour
     float energy;
     [SerializeField]
     float energyRechargeAmount;
+    float rechargeCooldownTimer= 5f; 
     #endregion
 
     #region Base Values//Movement
@@ -22,6 +23,8 @@ public class NeonController : MonoBehaviour
     float driftAmount;
 
     float distanceTravelled = 0;
+
+    float deathTimer = 2f;
     #endregion
 
     #region Boost Values//Speed Boost
@@ -31,6 +34,13 @@ public class NeonController : MonoBehaviour
     float boostTimeLeft;
     [SerializeField]
     float boostSpeedMultiplier;
+    #endregion
+
+    #region Slow Down Values//LightBoxes
+    float slowedSpeed;
+    float slowedMaxSpeed;
+    [SerializeField]
+    float slowedMultiplier = 0.3f;
     #endregion
 
     #region Intantiates//Objects, etc.
@@ -113,7 +123,24 @@ public class NeonController : MonoBehaviour
                 StartCoroutine(Boost());
             }
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("I have collided");
+
+        if (collision.gameObject.name == "Refuel Station")
+        {
+            energy = energy + energyRechargeAmount;
+            speed = baseSpeed;
+            StartCoroutine(SlowDown());
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.Log("I have exited");
+        speed = baseSpeed;
     }
 
     IEnumerator Boost()
@@ -125,6 +152,25 @@ public class NeonController : MonoBehaviour
         yield return new WaitForSeconds(boostTimeLeft);
         speed = baseSpeed;
         Debug.Log("I Am No Longer Boosting");
+    }
+
+    IEnumerator SlowDown()
+    {
+        if (isBoosting == true) //set player speed back to normal
+        {
+            speed = baseSpeed;
+        }
+
+        slowedSpeed = baseSpeed * slowedMultiplier;
+        speed = slowedSpeed;
+
+        yield return new WaitForSeconds(rechargeCooldownTimer);
+    }
+
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(deathTimer);
+        Destroy(sr);
     }
 
 

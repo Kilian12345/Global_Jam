@@ -145,12 +145,6 @@ public class PlayerEnergyController : MonoBehaviour
         Debug.Log("I have exited");
         acceleration = baseAcceleration;
     }
-    
-    IEnumerator Death()
-    {
-        yield return new WaitForSeconds(deathTimer);
-        Destroy(sr);
-    }
 
     IEnumerator Boost()
     {
@@ -174,6 +168,12 @@ public class PlayerEnergyController : MonoBehaviour
         acceleration = slowedAcceleration;
 
         yield return new WaitForSeconds (fuelRechargeTimer);
+    }
+
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(deathTimer);
+        Destroy(sr);
     }
     #endregion
 }
