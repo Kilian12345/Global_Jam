@@ -6,14 +6,10 @@ public class PlayerEnergyController : MonoBehaviour
 {
     #region Variables
     //FUEL VALUES
-    [SerializeField]
-    float neonFuel;
-    [SerializeField]
-    float fuelRecharge;
-    [SerializeField]
-    float deathTimer;
-    [SerializeField]
-    float fuelRechargeTimer;
+    public float neonFuel;
+    public float fuelRecharge;
+    public float deathTimer;
+    public float fuelRechargeTimer;
 
     //BASE VALUES
     float acceleration;
