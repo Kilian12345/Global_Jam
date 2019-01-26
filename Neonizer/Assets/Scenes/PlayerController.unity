@@ -409,8 +409,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
-  m_AngularDrag: 0.05
+  m_LinearDrag: 2
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -430,11 +430,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 150
-  acceleration: 25
+  acceleration: 50
   steering: 200
   boostMaxSpeed: 300
-  boostAcceleration: 100
-  boostTime: 5
+  boostAcceleration: 300
+  boostTime: 50
 --- !u!4 &2070889864
 Transform:
   m_ObjectHideFlags: 0

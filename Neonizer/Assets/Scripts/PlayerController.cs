@@ -6,15 +6,18 @@ public class PlayerController : MonoBehaviour
 {
     #region Variables
     public float maxSpeed;
+    public float baseAcceleration;
     public float acceleration;
     public float steering;
 
-    public float boostMaxSpeed;
-    public float boostAcceleration;
+    float boostMaxSpeed;
+    float boostAcceleration;
 
     public float boostTime;
 
     float currentSpeed;
+    public float Juice = 3;
+
 
     #endregion
 
@@ -23,12 +26,14 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        acceleration = baseAcceleration;
     }
 
     private void FixedUpdate()
     {
+#region Base Movement
         // Get input
-        float horizontal = -Input.GetAxisRaw("Horizontal");
+        float horizontal = -Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         // Auto-move
@@ -66,9 +71,9 @@ public class PlayerController : MonoBehaviour
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
         currentSpeed = rb.velocity.magnitude;
+#endregion
 
-
-        if (Input.GetButtonDown("Shift"))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             StartCoroutine(Boost());
         }
@@ -76,10 +81,14 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Boost()
     {
-        maxSpeed = boostMaxSpeed;
+        boostAcceleration = baseAcceleration * Juice;
         acceleration = boostAcceleration;
-
         yield return new WaitForSeconds(boostTime);
+        acceleration = baseAcceleration;
+        Debug.Log("put");
+
+
     }
 
+    
 }
