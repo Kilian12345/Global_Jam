@@ -2,26 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class RedPlayerController : MonoBehaviour
 {
     #region Variables
-    public float maxSpeed;
-    public float baseAcceleration;
-    float acceleration;
-    public float driftAmount;
+    //FUEL VALUES
+    public float neonFuel;
+    public float fuelRecharge;
+    public float deathTimer;
+    public float fuelRechargeTimer;
 
+    //BASE VALUES
+    float acceleration;
+    [SerializeField]
+    float maxSpeed;
+    [SerializeField]
+    float baseAcceleration;
+    [SerializeField]
+    float driftAmount;
+
+    //BOOST VALUES
     float boostMaxSpeed;
     float boostAcceleration;
+    [SerializeField]
+    float boostTime;
 
-    public float boostTime;
+    //SLOW VALUES
+    float slowedAcceleration;
+    float slowedMaxSpeed;
 
+    //SPEED MULTIPLIERS
+    [SerializeField]
     float currentSpeed;
-    public float boostMultiplier = 3;
+    [SerializeField]
+    float boostMultiplier;
+    [SerializeField]
+    float slowedModifier;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private ParticleSystem particle;
-
-
+    private Collider2D collider;
     #endregion
 
     #region Monobehavior Callbacks
@@ -29,16 +49,26 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         acceleration = baseAcceleration;
     }
 
     private void FixedUpdate()
     {
-        Movement();
-
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (neonFuel > 0)
         {
-            StartCoroutine(Boost());
+
+            Movement();
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                StartCoroutine(Boost());
+            }
+            neonFuel -= Time.deltaTime;
+        }
+        else
+        {
+            StartCoroutine(Death());
         }
     }
 
@@ -90,6 +120,25 @@ public class PlayerController : MonoBehaviour
         currentSpeed = rb.velocity.magnitude;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("I have collided");
+        neonFuel = neonFuel + fuelRecharge;
+        acceleration = baseAcceleration;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("I have exited");
+        StartCoroutine(SlowDown());
+    }
+
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(deathTimer);
+        Destroy(sr);
+    }
+
     IEnumerator Boost()
     {
         boostAcceleration = baseAcceleration * boostMultiplier;
@@ -97,8 +146,17 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(boostTime);
         acceleration = baseAcceleration;
-        Debug.Log("put");
+        Debug.Log("Wallah je boost plus");
     }
-    #endregion
 
+    IEnumerator SlowDown()
+    {
+        slowedAcceleration = baseAcceleration * slowedModifier;
+        acceleration = slowedAcceleration;
+
+        yield return new WaitForSeconds(fuelRechargeTimer);
+    }
+
+    #endregion
 }
+
