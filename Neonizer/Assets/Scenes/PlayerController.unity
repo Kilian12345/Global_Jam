@@ -4904,7 +4904,7 @@ GameObject:
   - component: {fileID: 2092721413}
   - component: {fileID: 2092721412}
   m_Layer: 0
-  m_Name: Home
+  m_Name: Refuel Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4982,7 +4982,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092721411}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.2, y: -2.36, z: -0.09889807}
+  m_LocalPosition: {x: -4.6, y: -0.7, z: -0.09889807}
   m_LocalScale: {x: 0.37873578, y: 0.37873578, z: 0.37873578}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5102,7 +5102,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3834273620524977165}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.6, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8214890966047860100}
@@ -5125,6 +5125,7 @@ MonoBehaviour:
   neonFuel: 10
   fuelRecharge: 10
   deathTimer: 3
+  fuelRechargeTimer: 0
   maxSpeed: 150
   baseAcceleration: 50
   driftAmount: 200

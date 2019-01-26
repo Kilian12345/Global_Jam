@@ -127,8 +127,11 @@ public class PlayerEnergyController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("I have collided");
-        neonFuel = neonFuel + fuelRecharge;
-        acceleration = baseAcceleration;
+        if (collision.gameObject.name == "Refuel Station")
+        {
+            neonFuel = neonFuel + fuelRecharge;
+            acceleration = baseAcceleration;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -160,6 +163,5 @@ public class PlayerEnergyController : MonoBehaviour
 
         yield return new WaitForSeconds (fuelRechargeTimer);
     }
-
     #endregion
 }
