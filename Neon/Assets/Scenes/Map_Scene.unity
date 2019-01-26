@@ -1795,7 +1795,7 @@ PrefabInstance:
     - target: {fileID: 4278321113540216544, guid: c0447d06963aee74987e26f7dee2ff62,
         type: 3}
       propertyPath: maxSpeed
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4278321113540216544, guid: c0447d06963aee74987e26f7dee2ff62,
         type: 3}
@@ -1806,6 +1806,11 @@ PrefabInstance:
         type: 3}
       propertyPath: boostTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278321113540216544, guid: c0447d06963aee74987e26f7dee2ff62,
+        type: 3}
+      propertyPath: neonFuel
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1038561205129233442, guid: c0447d06963aee74987e26f7dee2ff62,
         type: 3}

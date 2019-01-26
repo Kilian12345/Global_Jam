@@ -57,7 +57,7 @@ public class PlayerEnergyController : MonoBehaviour
     {
         if (neonFuel > 0)
         {
-            Debug.Log(Mathf.Floor(neonFuel));
+
             Movement();
 
             if (Input.GetKey(KeyCode.LeftShift))
