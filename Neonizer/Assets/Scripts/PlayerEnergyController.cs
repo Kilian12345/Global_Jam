@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerEnergyController : MonoBehaviour
 {
     #region Variables
+    [SerializeField]
     float neonFuel = 10f;
+    [SerializeField]
+    float fuelRecharge = 10f;
+    [SerializeField]
     float deathTimer = 3f;
 
     public float maxSpeed;
@@ -24,6 +28,7 @@ public class PlayerEnergyController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private ParticleSystem particle;
+    private Collider2D collider;
     #endregion
 
     #region Monobehavior Callbacks
@@ -37,8 +42,7 @@ public class PlayerEnergyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        neonFuel -= Time.deltaTime;
+        //neonFuel -= Time.deltaTime;
 
         if (neonFuel > 0)
         {
@@ -49,6 +53,8 @@ public class PlayerEnergyController : MonoBehaviour
             {
                 StartCoroutine(Boost());
             }
+
+            neonFuel -= Time.deltaTime;
         }
         else
         {
@@ -104,6 +110,12 @@ public class PlayerEnergyController : MonoBehaviour
         currentSpeed = rb.velocity.magnitude;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("i have collided");
+        neonFuel += fuelRecharge;
+    }
+
     IEnumerator Death()
     {
         yield return new WaitForSeconds(deathTimer);
@@ -112,6 +124,7 @@ public class PlayerEnergyController : MonoBehaviour
 
     IEnumerator Boost()
     {
+        //neonFuel = 10f;
         boostAcceleration = baseAcceleration * boostMultiplier;
         acceleration = boostAcceleration;
 
