@@ -13,7 +13,7 @@ public class PlayerEnergyController : MonoBehaviour
     [SerializeField]
     float deathTimer;
     [SerializeField]
-    floats fuelRechargeTimer;
+    float fuelRechargeTimer;
 
     //BASE VALUES
     float acceleration;
