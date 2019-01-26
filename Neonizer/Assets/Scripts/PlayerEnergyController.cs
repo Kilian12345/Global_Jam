@@ -5,25 +5,40 @@ using UnityEngine;
 public class PlayerEnergyController : MonoBehaviour
 {
     #region Variables
+    //FUEL VALUES
     [SerializeField]
-    float neonFuel = 10f;
+    float neonFuel;
     [SerializeField]
-    float fuelRecharge = 10f;
+    float fuelRecharge;
     [SerializeField]
-    float deathTimer = 3f;
+    float deathTimer;
 
-    public float maxSpeed;
-    public float baseAcceleration;
+    //BASE VALUES
     float acceleration;
-    public float driftAmount;
+    [SerializeField]
+    float maxSpeed;
+    [SerializeField]
+    float baseAcceleration;
+    [SerializeField]
+    float driftAmount;
 
+    //BOOST VALUES
     float boostMaxSpeed;
     float boostAcceleration;
+    [SerializeField]
+    float boostTime;
 
-    public float boostTime;
+    //SLOW VALUES
+    float slowedAcceleration;
+    float slowedMaxSpeed;
 
+    //SPEED MULTIPLIERS
+    [SerializeField]
     float currentSpeed;
-    public float boostMultiplier = 3;
+    [SerializeField]
+    float boostMultiplier;
+    [SerializeField]
+    float slowedModifier;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -42,8 +57,6 @@ public class PlayerEnergyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //neonFuel -= Time.deltaTime;
-
         if (neonFuel > 0)
         {
             Debug.Log(Mathf.Floor(neonFuel));
@@ -53,7 +66,6 @@ public class PlayerEnergyController : MonoBehaviour
             {
                 StartCoroutine(Boost());
             }
-
             neonFuel -= Time.deltaTime;
         }
         else
@@ -112,8 +124,9 @@ public class PlayerEnergyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("i have collided");
+        Debug.Log("I have collided");
         neonFuel += fuelRecharge;
+        StartCoroutine(SlowDown());
     }
 
     IEnumerator Death()
@@ -124,7 +137,6 @@ public class PlayerEnergyController : MonoBehaviour
 
     IEnumerator Boost()
     {
-        //neonFuel = 10f;
         boostAcceleration = baseAcceleration * boostMultiplier;
         acceleration = boostAcceleration;
 
@@ -132,6 +144,14 @@ public class PlayerEnergyController : MonoBehaviour
         acceleration = baseAcceleration;
         Debug.Log("Wallah je boost plus");
     }
-    #endregion
 
+    IEnumerator SlowDown()
+    {
+        slowedAcceleration = baseAcceleration * slowedModifier;
+        acceleration = slowedAcceleration;
+        
+        yield return new WaitForSeconds (2);
+    }
+
+    #endregion
 }
