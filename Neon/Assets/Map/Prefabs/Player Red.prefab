@@ -61,6 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58634881f353bb7478ec369c29b4c3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ps: {fileID: 4585221626447167905}
+  Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &4177941991754490040
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +173,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -3566,7 +3568,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 3
     type: 1
     collisionMode: 1
@@ -5112,7 +5114,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.018101081, b: 0, a: 1}
+      key0: {r: 1, g: 0.5699223, b: 0.5613208, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

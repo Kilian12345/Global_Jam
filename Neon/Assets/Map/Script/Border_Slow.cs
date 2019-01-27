@@ -8,23 +8,26 @@ public class Border_Slow : MonoBehaviour
     float Basedistance;
     float distancePercentage;
     float slower;
-    [SerializeField]
-    ParticleSystem ps;
+
+    public GameObject ps;
+    Vector3 kouillas;
+    Vector3 psSize;
 
     public Vector3 Scale;
     Vector3 baseScale;
+
 
     void Start()
     {
         Scale = transform.localScale;
         baseScale = transform.localScale;
-
-        ps = GetComponent<ParticleSystem>();
+        kouillas = ps.transform.localScale;
     }
 
     void Update()
     {
         Rescale();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,15 +38,6 @@ public class Border_Slow : MonoBehaviour
             Basedistance = distance;
             Debug.Log("REGARDE"+ Basedistance);
 
-
-            var sz = ps.sizeOverLifetime;
-            sz.enabled = true;
-
-            AnimationCurve curve = new AnimationCurve();
-            curve.AddKey(0.0f, 0.1f);
-            curve.AddKey(0.75f, 1.0f);
-
-            sz.size = new ParticleSystem.MinMaxCurve(1.5f, curve);
         }
     }
 
@@ -66,10 +60,16 @@ public class Border_Slow : MonoBehaviour
 
             Scale = (distancePercentage * baseScale) / 100;
             transform.localScale = Scale;
+
+           psSize = (distancePercentage * kouillas) / 100;
+            ps.transform.localScale = psSize;
+
+            Debug.Log(psSize);
         }
         if (distancePercentage > 100)
         {
             transform.localScale = baseScale;
+            ps.transform.localScale = kouillas;
 
         }
 
@@ -78,14 +78,4 @@ public class Border_Slow : MonoBehaviour
     }
 
 }
-/*    void Start() {
-        ParticleSystem ps = GetComponent<ParticleSystem>();
-        var sz = ps.sizeOverLifetime;
-        sz.enabled = true;
 
-        AnimationCurve curve = new AnimationCurve();
-        curve.AddKey(0.0f, 0.1f);
-        curve.AddKey(0.75f, 1.0f);
-
-        sz.size = new ParticleSystem.MinMaxCurve(1.5f, curve);
-    }*/

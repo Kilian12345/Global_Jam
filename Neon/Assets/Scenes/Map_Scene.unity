@@ -1189,6 +1189,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1757801220}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &786244699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4177941991754490040, guid: d4f2ac5dc40aeef42b4e4960a3a397d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1492961528}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &786938618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1550034173527175684, guid: 98d04e5002534924b901862d29cb8d7b,
@@ -2305,6 +2311,16 @@ PrefabInstance:
       propertyPath: m_AngularDrag
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6545708514099308874, guid: d4f2ac5dc40aeef42b4e4960a3a397d8,
+        type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 995288226939952554, guid: d4f2ac5dc40aeef42b4e4960a3a397d8,
+        type: 3}
+      propertyPath: ps
+      value: 
+      objectReference: {fileID: 786244699}
     m_RemovedComponents:
     - {fileID: 5944798303737372238, guid: d4f2ac5dc40aeef42b4e4960a3a397d8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d4f2ac5dc40aeef42b4e4960a3a397d8, type: 3}
