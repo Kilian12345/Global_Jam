@@ -24,6 +24,10 @@ public class NeonController2 : MonoBehaviour
 
     float distanceTravelled = 0;
 
+    float distance;
+    float Basedistance;
+    float distancePercentage;
+
     float deathTimer = 2f;
     #endregion
 
@@ -125,18 +129,6 @@ public class NeonController2 : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-
-        if (collision.gameObject.name == "Refuel Station")
-        {
-            energy = energy + energyRechargeAmount;
-            speed = baseSpeed;
-            StartCoroutine(SlowDown());
-        }
-    }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
 
@@ -152,19 +144,6 @@ public class NeonController2 : MonoBehaviour
         yield return new WaitForSeconds(boostTimeLeft);
         speed = baseSpeed;
 
-    }
-
-    IEnumerator SlowDown()
-    {
-        if (isBoosting == true) //set player speed back to normal
-        {
-            speed = baseSpeed;
-        }
-
-        slowedSpeed = baseSpeed * slowedMultiplier;
-        speed = slowedSpeed;
-
-        yield return new WaitForSeconds(rechargeCooldownTimer);
     }
 
     IEnumerator Death()
