@@ -18,7 +18,7 @@ public class ColorSwitch : MonoBehaviour
     NeonController2 playerScript;
 
     public Text scoreText;
-    public int score;
+    public int score = 0;
     public int currentScore;
 
     // Start is called before the first frame update
@@ -42,7 +42,7 @@ public class ColorSwitch : MonoBehaviour
     {
         //Debug.Log("I am Colliding with : " + other.gameObject.name);
 
-        if (other.gameObject.tag == "Player_Red" && thisPoint != "PointRed")
+        if (other.gameObject.tag == "Player_Red" && thisPoint == "PointBlue" || thisPoint == "PointWhite")
         {
             Destroy(this.gameObject);
             //Debug.Log("Je passe au Rouge");
@@ -51,7 +51,7 @@ public class ColorSwitch : MonoBehaviour
             AddScore();
         }
 
-        if (other.gameObject.tag == "Player_Blue" && thisPoint != "PointBlue")
+        if (other.gameObject.tag == "Player_Blue" && thisPoint == "PointRed" || thisPoint == "PointWhite")
         {
             Destroy(this.gameObject);
             //Debug.Log("Je passe au Bleu");
@@ -71,12 +71,10 @@ public class ColorSwitch : MonoBehaviour
         score = score + 1;
         //ShowScore();
         Debug.Log("Your score : " + score);
-        //Debug.Log("Your score : " + currentScore);
     }
 
     void ShowScore()
     {
-        //Debug.Log("Your score : " + score);
-        //scoreText.text = "Score: " + currentScore;
+        scoreText.text = "Score: " + currentScore;
     }
 }
