@@ -7,22 +7,22 @@ public class NeonController2 : MonoBehaviour
 
     #region Energy Values//Life Points
     [SerializeField]
-    float energy;
+    float energy = 20f;
     [SerializeField]
-    float energyRechargeAmount;
+    float energyRechargeAmount = 10f;
     float rechargeCooldownTimer = 5f;
     #endregion
 
     #region Base Values//Movement
     [SerializeField]
-    float speed = 50;
-    float baseSpeed = 50;
+    float speed = 50f;
+    float baseSpeed = 50f;
     float currentSpeed;
-    float maxSpeed = 200;
+    float maxSpeed = 200f;
     [SerializeField]
-    float driftAmount;
+    float driftAmount = 200f;
 
-    float distanceTravelled = 0;
+    float distanceTravelled = 0f;
 
     float distance;
     float Basedistance;
@@ -35,9 +35,9 @@ public class NeonController2 : MonoBehaviour
     bool isBoosting;
     float boostSpeed;
     [SerializeField]
-    float boostTimeLeft;
+    float boostTimeLeft = 3f;
     [SerializeField]
-    float boostSpeedMultiplier;
+    float boostSpeedMultiplier = 3f;
     #endregion
 
     #region Slow Down Values//LightBoxes
@@ -54,9 +54,21 @@ public class NeonController2 : MonoBehaviour
     private SpriteRenderer sr;
     private ParticleSystem particle;
     private Collider2D collider;
+    public bool haveCollided;
+
+    public Transform positionOrigin;
+    Vector3 spawnPosition;
+    public GameObject playerSecondLife;
     #endregion
 
-    #region MonoBehavior Callbacks
+    #region MonoBehavior Callbacks*
+
+    private void Awake()
+    {
+        spawnPosition = this.gameObject.transform.position;
+        playerSecondLife = this.gameObject;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -126,13 +138,23 @@ public class NeonController2 : MonoBehaviour
             {
                 StartCoroutine(Boost());
             }
+            energy -= Time.deltaTime;
+        }
+        else
+        {
+            //StartCoroutine(Death());
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
         speed = baseSpeed;
+    }
+
+
+    private void Respawn()
+    {
+        Instantiate(playerSecondLife, spawnPosition, Quaternion.identity);
     }
 
     IEnumerator Boost()
@@ -150,8 +172,7 @@ public class NeonController2 : MonoBehaviour
     {
         yield return new WaitForSeconds(deathTimer);
         Destroy(sr);
+        Respawn();
     }
-
-
     #endregion
 }
