@@ -7,22 +7,22 @@ public class NeonController2 : MonoBehaviour
 
     #region Energy Values//Life Points
     [SerializeField]
-    float energy;
+    float energy = 20f;
     [SerializeField]
-    float energyRechargeAmount;
+    float energyRechargeAmount = 10f;
     float rechargeCooldownTimer = 5f;
     #endregion
 
     #region Base Values//Movement
     [SerializeField]
-    float speed = 50;
-    float baseSpeed = 50;
+    float speed = 50f;
+    float baseSpeed = 50f;
     float currentSpeed;
-    float maxSpeed = 200;
+    float maxSpeed = 200f;
     [SerializeField]
-    float driftAmount;
+    float driftAmount = 200f;
 
-    float distanceTravelled = 0;
+    float distanceTravelled = 0f;
 
     float deathTimer = 2f;
     #endregion
@@ -31,9 +31,9 @@ public class NeonController2 : MonoBehaviour
     bool isBoosting;
     float boostSpeed;
     [SerializeField]
-    float boostTimeLeft;
+    float boostTimeLeft = 3f;
     [SerializeField]
-    float boostSpeedMultiplier;
+    float boostSpeedMultiplier = 3f;
     #endregion
 
     #region Slow Down Values//LightBoxes
@@ -122,6 +122,11 @@ public class NeonController2 : MonoBehaviour
             {
                 StartCoroutine(Boost());
             }
+            energy -= Time.deltaTime;
+        }
+        else
+        {
+            StartCoroutine(Death());
         }
     }
 
