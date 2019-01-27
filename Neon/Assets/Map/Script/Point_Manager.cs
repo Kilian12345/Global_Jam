@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Point_Manager : MonoBehaviour
 {
-    /*[SerializeField]
+    [SerializeField]
     GameObject[] points;
 
    void Update()
@@ -12,13 +12,13 @@ public class Point_Manager : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider2D collider)
+    /*void OnTriggerEnter(Collider2D collider)
     {
         if (points.collider.gameObject.tag == "Player")
         {
             Debug.Log("Ok c'est bon");
         }
-    }
+    }*/
 
-*/
+
 }

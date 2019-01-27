@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Gauje_Lower : MonoBehaviour
 {
-    PlayerEnergyController lightEnergy;
+    NeonController lightEnergy;
 
-    float energy;
+    float Energy;
     Vector3 baseScale;
     public Vector3 Scale;
 
@@ -15,30 +15,31 @@ public class Gauje_Lower : MonoBehaviour
 
     void Start()
     {
-        lightEnergy = FindObjectOfType<PlayerEnergyController>();
+        lightEnergy = FindObjectOfType<NeonController>();
 
         baseScale = transform.localScale;
-        energy = lightEnergy.neonFuel;
+        Energy = lightEnergy.energy;
         Scale = transform.localScale;
     }
 
     void Update()
     {
         Discharge();
+        //Debug.Log(lightEnergy.energy);
 
     }
 
     void Discharge()
     {
     
-          percentage = (lightEnergy.neonFuel * 100) / energy;
+          percentage = (lightEnergy.energy * 100) / Energy;
 
             if (percentage <= 100)
             {
 
             Scale.y = (percentage * baseScale.y) / 100;
             transform.localScale = Scale;
-            Debug.Log(Scale.y);
+            //Debug.Log(Scale.y);
 
             }
 

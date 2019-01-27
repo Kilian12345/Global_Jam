@@ -6,21 +6,23 @@ public class NeonController : MonoBehaviour
 {
 
     #region Energy Values//Life Points
+
+    public float energy = 50;
     [SerializeField]
-    float energy = 20f;
-    [SerializeField]
-    float energyRechargeAmount = 10f;
+    float energyRechargeAmount;
     float rechargeCooldownTimer= 5f; 
     #endregion
 
     #region Base Values//Movement
     [SerializeField]
-    float speed = 50f;
-    float baseSpeed = 50f;
-    float currentSpeed;
-    float maxSpeed = 200f;
+    float speed = 5;
     [SerializeField]
-    float driftAmount = 200f;
+    float baseSpeed = 5;
+    float currentSpeed;
+    [SerializeField]
+    float maxSpeed = 10;
+    [SerializeField]
+    float driftAmount = 200;
 
     float distanceTravelled = 0f;
 
@@ -29,11 +31,12 @@ public class NeonController : MonoBehaviour
 
     #region Boost Values//Speed Boost
     bool isBoosting;
-    float boostSpeed;
     [SerializeField]
-    float boostTimeLeft = 3f;
+    float boostSpeed = 50;
     [SerializeField]
-    float boostSpeedMultiplier = 3f;
+    float boostTimeLeft = 2;
+    [SerializeField]
+    float boostSpeedMultiplier = 3;
     #endregion
 
     #region Slow Down Values//LightBoxes
@@ -65,7 +68,6 @@ public class NeonController : MonoBehaviour
     {
         if(energy > 0)
         {
-            //Debug.Log(Mathf.Floor(energy));
             Move();
         }
 
@@ -91,24 +93,26 @@ public class NeonController : MonoBehaviour
         #region Rotation
         float direction = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up));
 
+
         if (direction >= 0.0f)
         {
             rb.rotation += horizontal * driftAmount * (rb.velocity.magnitude / maxSpeed);
         }
-
+        
         else
         {
             rb.rotation -= horizontal * driftAmount * (rb.velocity.magnitude / maxSpeed);
         }
         #endregion
         // Create Neon rotation
-
+        
         #region Drifting
         float driftForce = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.left));
 
-        Vector2 relativeForce = Vector2.right * driftForce * 0.00005f;
+        Vector2 relativeForce = Vector2.right * driftForce * 0.05f;
 
-        Debug.DrawLine(rb.position, rb.GetRelativePoint(relativeForce), Color.green);
+        Debug.DrawLine( rb.position, rb.GetRelativePoint(relativeForce), Color.green);
+        Debug.Log("Askip");
 
         rb.AddForce(rb.GetRelativeVector(relativeForce));
         #endregion
@@ -132,7 +136,7 @@ public class NeonController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("I have collided");
+
 
         if (collision.gameObject.name == "Refuel Station")
         {
@@ -144,7 +148,7 @@ public class NeonController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("I have exited");
+
         speed = baseSpeed;
     }
 
@@ -156,7 +160,7 @@ public class NeonController : MonoBehaviour
 
         yield return new WaitForSeconds(boostTimeLeft);
         speed = baseSpeed;
-        Debug.Log("I Am No Longer Boosting");
+
     }
 
     IEnumerator SlowDown()
