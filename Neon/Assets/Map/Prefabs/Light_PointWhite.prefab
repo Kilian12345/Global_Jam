@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 792819470108917540}
   m_Layer: 12
   m_Name: Light_PointWhite
-  m_TagString: PointWhite
+  m_TagString: Exterior_Collider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -489,6 +489,7 @@ MonoBehaviour:
     type: 3}
   redLightPoint: {fileID: 1697173061382055034, guid: d6ba6def764ff6d43ac9b24fcce6ab16,
     type: 3}
+  scoreText: {fileID: 0}
 --- !u!114 &1550034173527175680
 MonoBehaviour:
   m_ObjectHideFlags: 0

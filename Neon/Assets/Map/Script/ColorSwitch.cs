@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class ColorSwitch : MonoBehaviour
@@ -15,6 +16,9 @@ public class ColorSwitch : MonoBehaviour
     GameObject redPoint;
     GameObject whitePoint;
     NeonController2 playerScript;
+
+    public Text scoreText;
+    private int score;
 
     // Start is called before the first frame update
     void Start()
@@ -51,11 +55,24 @@ public class ColorSwitch : MonoBehaviour
             Debug.Log("Je passe au Bleu");
             thisPoint = "PointBlue";
             Instantiate(blueLightPoint, thisCirclePosition, Quaternion.identity);
+            AddScore(1);
         }
 
         else
         {
-                //begin regen health
+            //begin regen health
         }
+    }
+
+    public void AddScore(int newScoreValue)
+    {
+        score += newScoreValue;
+        UpdateScore();
+    }
+
+    void UpdateScore()
+    {
+        Debug.Log("Your score : " + score);
+        scoreText.text = "Score: " + score;
     }
 }

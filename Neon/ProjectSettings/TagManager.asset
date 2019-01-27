@@ -9,6 +9,7 @@ TagManager:
   - PointWhite
   - Player_Red
   - Player_Blue
+  - Exterior_Collider
   layers:
   - Default
   - TransparentFX

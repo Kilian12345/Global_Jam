@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4463607043884569258}
   m_Layer: 12
   m_Name: Light_PointRed
-  m_TagString: PointRed
+  m_TagString: Exterior_Collider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   blueLightPoint: {fileID: 6619394960766354809, guid: 236d4a9a712f21342b74d43062642b33,
     type: 3}
   redLightPoint: {fileID: 1697173061382055034}
+  scoreText: {fileID: 0}
 --- !u!114 &1697173061382055035
 MonoBehaviour:
   m_ObjectHideFlags: 0
