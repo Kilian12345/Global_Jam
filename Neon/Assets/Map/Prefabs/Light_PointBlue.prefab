@@ -473,6 +473,7 @@ GameObject:
   - component: {fileID: 6619394960766354804}
   - component: {fileID: 6619394960766354805}
   - component: {fileID: 6619394960766354810}
+  - component: {fileID: 8106377455011510867}
   - component: {fileID: 6619394960766354808}
   - component: {fileID: 4600262976622756585}
   m_Layer: 12
@@ -567,6 +568,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8106377455011510867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6619394960766354809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc859f5912977fd43b29d0a1f2d7221d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionOrigin: {fileID: 6619394960766354804}
+  blueLightPoint: {fileID: 6619394960766354809}
+  redLightPoint: {fileID: 1697173061382055034, guid: d6ba6def764ff6d43ac9b24fcce6ab16,
+    type: 3}
 --- !u!114 &6619394960766354808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,10 +600,10 @@ MonoBehaviour:
   viewAngle: 360
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   playerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   visiblePlayer:
   - {fileID: 6619394960766354804}
 --- !u!58 &4600262976622756585

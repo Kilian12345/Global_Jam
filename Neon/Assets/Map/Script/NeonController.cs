@@ -65,7 +65,7 @@ public class NeonController : MonoBehaviour
     {
         if(energy > 0)
         {
-            Debug.Log(Mathf.Floor(energy));
+            //Debug.Log(Mathf.Floor(energy));
             Move();
         }
 

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fc859f5912977fd43b29d0a1f2d7221d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - blueLightPoint: {fileID: 6619394960766354809, guid: 236d4a9a712f21342b74d43062642b33,
+      type: 3}
+  - redLightPoint: {fileID: 1697173061382055034, guid: d6ba6def764ff6d43ac9b24fcce6ab16,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -50,6 +50,7 @@ public class NeonController2 : MonoBehaviour
     private SpriteRenderer sr;
     private ParticleSystem particle;
     private Collider2D collider;
+    public bool haveCollided;
     #endregion
 
     #region MonoBehavior Callbacks
@@ -65,7 +66,7 @@ public class NeonController2 : MonoBehaviour
     {
         if (energy > 0)
         {
-            Debug.Log(Mathf.Floor(energy));
+            //Debug.Log(Mathf.Floor(energy));
             Move();
         }
 
@@ -132,6 +133,7 @@ public class NeonController2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        haveCollided = true;
         Debug.Log("I have collided");
 
         if (collision.gameObject.name == "Refuel Station")
