@@ -25,7 +25,7 @@ public class Gauje_Lower : MonoBehaviour
     void Update()
     {
         Discharge();
-        Debug.Log(lightEnergy.energy);
+        //Debug.Log(lightEnergy.energy);
 
     }
 
@@ -39,7 +39,7 @@ public class Gauje_Lower : MonoBehaviour
 
             Scale.y = (percentage * baseScale.y) / 100;
             transform.localScale = Scale;
-            Debug.Log(Scale.y);
+            //Debug.Log(Scale.y);
 
             }
 

@@ -7,7 +7,7 @@ public class NeonController : MonoBehaviour
 
     #region Energy Values//Life Points
 
-    public float energy;
+    public float energy = 50;
     [SerializeField]
     float energyRechargeAmount;
     float rechargeCooldownTimer= 5f; 
@@ -15,12 +15,14 @@ public class NeonController : MonoBehaviour
 
     #region Base Values//Movement
     [SerializeField]
-    float speed = 50;
-    float baseSpeed = 50;
-    float currentSpeed;
-    float maxSpeed = 200;
+    float speed = 5;
     [SerializeField]
-    float driftAmount;
+    float baseSpeed = 5;
+    float currentSpeed;
+    [SerializeField]
+    float maxSpeed = 10;
+    [SerializeField]
+    float driftAmount = 200;
 
     float distanceTravelled = 0;
 
@@ -29,11 +31,12 @@ public class NeonController : MonoBehaviour
 
     #region Boost Values//Speed Boost
     bool isBoosting;
-    float boostSpeed;
     [SerializeField]
-    float boostTimeLeft;
+    float boostSpeed = 50;
     [SerializeField]
-    float boostSpeedMultiplier;
+    float boostTimeLeft = 2;
+    [SerializeField]
+    float boostSpeedMultiplier = 3;
     #endregion
 
     #region Slow Down Values//LightBoxes
@@ -65,7 +68,6 @@ public class NeonController : MonoBehaviour
     {
         if(energy > 0)
         {
-            Debug.Log(Mathf.Floor(energy));
             Move();
         }
 
@@ -91,24 +93,26 @@ public class NeonController : MonoBehaviour
         #region Rotation
         float direction = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up));
 
+
         if (direction >= 0.0f)
         {
             rb.rotation += horizontal * driftAmount * (rb.velocity.magnitude / maxSpeed);
         }
-
+        
         else
         {
             rb.rotation -= horizontal * driftAmount * (rb.velocity.magnitude / maxSpeed);
         }
         #endregion
         // Create Neon rotation
-
+        
         #region Drifting
         float driftForce = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.left));
 
-        Vector2 relativeForce = Vector2.right * driftForce * 0.00005f;
+        Vector2 relativeForce = Vector2.right * driftForce * 0.05f;
 
-        Debug.DrawLine(rb.position, rb.GetRelativePoint(relativeForce), Color.green);
+        Debug.DrawLine( rb.position, rb.GetRelativePoint(relativeForce), Color.green);
+        Debug.Log("Askip");
 
         rb.AddForce(rb.GetRelativeVector(relativeForce));
         #endregion
