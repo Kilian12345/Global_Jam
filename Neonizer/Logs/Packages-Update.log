@@ -1,4 +1,10 @@
 
+<<<<<<< HEAD
+=== Fri Jan 25 20:34:29 2019
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+=======
 === Fri Jan 25 20:41:39 2019
 
 Packages were changed.
@@ -46,6 +52,7 @@ The following packages were added:
 
 Packages were changed.
 Update Mode: resetToDefaultDependencies
+>>>>>>> Leo_Branch
 
 The following packages were added:
   com.unity.analytics@3.2.2
