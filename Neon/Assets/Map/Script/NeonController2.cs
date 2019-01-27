@@ -51,9 +51,20 @@ public class NeonController2 : MonoBehaviour
     private ParticleSystem particle;
     private Collider2D collider;
     public bool haveCollided;
+
+    public Transform positionOrigin;
+    Vector3 spawnPosition;
+    public GameObject playerSecondLife;
     #endregion
 
-    #region MonoBehavior Callbacks
+    #region MonoBehavior Callbacks*
+
+    private void Awake()
+    {
+        spawnPosition = this.gameObject.transform.position;
+        playerSecondLife = this.gameObject;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -127,7 +138,7 @@ public class NeonController2 : MonoBehaviour
         }
         else
         {
-            StartCoroutine(Death());
+            //StartCoroutine(Death());
         }
     }
 
@@ -145,8 +156,13 @@ public class NeonController2 : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
         speed = baseSpeed;
+    }
+
+
+    private void Respawn()
+    {
+        Instantiate(playerSecondLife, spawnPosition, Quaternion.identity);
     }
 
     IEnumerator Boost()
@@ -177,8 +193,7 @@ public class NeonController2 : MonoBehaviour
     {
         yield return new WaitForSeconds(deathTimer);
         Destroy(sr);
+        Respawn();
     }
-
-
     #endregion
 }

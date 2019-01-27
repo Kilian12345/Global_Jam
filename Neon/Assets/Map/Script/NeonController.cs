@@ -6,7 +6,6 @@ public class NeonController : MonoBehaviour
 {
 
     #region Energy Values//Life Points
-
     public float energy = 50;
     [SerializeField]
     float energyRechargeAmount;
@@ -53,9 +52,20 @@ public class NeonController : MonoBehaviour
     private SpriteRenderer sr;
     private ParticleSystem particle;
     private Collider2D collider;
+
+    public Transform positionOrigin;
+    Vector3 spawnPosition;
+    public GameObject playerSecondLife;
     #endregion
-    
+
     #region MonoBehavior Callbacks
+
+    private void Awake()
+    {
+        spawnPosition = this.gameObject.transform.position;
+        playerSecondLife = this.gameObject;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -112,8 +122,6 @@ public class NeonController : MonoBehaviour
         Vector2 relativeForce = Vector2.right * driftForce * 0.05f;
 
         Debug.DrawLine( rb.position, rb.GetRelativePoint(relativeForce), Color.green);
-        Debug.Log("Askip");
-
         rb.AddForce(rb.GetRelativeVector(relativeForce));
         #endregion
         // Change velocity based on rotation
@@ -130,7 +138,7 @@ public class NeonController : MonoBehaviour
         }
         else
         {
-            StartCoroutine(Death());
+            //StartCoroutine(Death());
         }
     }
 
@@ -150,6 +158,11 @@ public class NeonController : MonoBehaviour
     {
 
         speed = baseSpeed;
+    }
+
+    private void Respawn()
+    {
+        Instantiate(playerSecondLife, spawnPosition, Quaternion.identity);
     }
 
     IEnumerator Boost()
@@ -180,6 +193,7 @@ public class NeonController : MonoBehaviour
     {
         yield return new WaitForSeconds(deathTimer);
         Destroy(sr);
+        Respawn();
     }
 
 
