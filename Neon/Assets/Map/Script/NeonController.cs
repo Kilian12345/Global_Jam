@@ -6,8 +6,8 @@ public class NeonController : MonoBehaviour
 {
 
     #region Energy Values//Life Points
-    [SerializeField]
-    float energy;
+
+    public float energy;
     [SerializeField]
     float energyRechargeAmount;
     float rechargeCooldownTimer= 5f; 
@@ -127,7 +127,7 @@ public class NeonController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("I have collided");
+
 
         if (collision.gameObject.name == "Refuel Station")
         {
@@ -139,7 +139,7 @@ public class NeonController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("I have exited");
+
         speed = baseSpeed;
     }
 
@@ -151,7 +151,7 @@ public class NeonController : MonoBehaviour
 
         yield return new WaitForSeconds(boostTimeLeft);
         speed = baseSpeed;
-        Debug.Log("I Am No Longer Boosting");
+
     }
 
     IEnumerator SlowDown()

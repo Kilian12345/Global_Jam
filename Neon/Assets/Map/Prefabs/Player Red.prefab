@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Red
       objectReference: {fileID: 0}
+    - target: {fileID: 4278321113540216573, guid: c0447d06963aee74987e26f7dee2ff62,
+        type: 3}
+      propertyPath: m_TagString
+      value: RedPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4278321113540216575, guid: c0447d06963aee74987e26f7dee2ff62,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,11 +72,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5774886818498803734, guid: c0447d06963aee74987e26f7dee2ff62,
+        type: 3}
+      propertyPath: m_Name
+      value: Red_Light
+      objectReference: {fileID: 0}
     - target: {fileID: 6098073662504600767, guid: c0447d06963aee74987e26f7dee2ff62,
         type: 3}
       propertyPath: m_Name
       value: Red_Gauje
       objectReference: {fileID: 0}
+    - target: {fileID: 7185552687979230876, guid: c0447d06963aee74987e26f7dee2ff62,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41667df4cd9d5124cbc0dc00a1b69c07, type: 2}
+    - target: {fileID: 7185552687979230876, guid: c0447d06963aee74987e26f7dee2ff62,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41667df4cd9d5124cbc0dc00a1b69c07, type: 2}
     - target: {fileID: 2993862924861098629, guid: c0447d06963aee74987e26f7dee2ff62,
         type: 3}
       propertyPath: m_Color.r
@@ -87,21 +107,6 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.019001007
       objectReference: {fileID: 0}
-    - target: {fileID: 5774886818498803734, guid: c0447d06963aee74987e26f7dee2ff62,
-        type: 3}
-      propertyPath: m_Name
-      value: Red_Light
-      objectReference: {fileID: 0}
-    - target: {fileID: 7185552687979230876, guid: c0447d06963aee74987e26f7dee2ff62,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 41667df4cd9d5124cbc0dc00a1b69c07, type: 2}
-    - target: {fileID: 7185552687979230876, guid: c0447d06963aee74987e26f7dee2ff62,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 41667df4cd9d5124cbc0dc00a1b69c07, type: 2}
     - target: {fileID: 282620530611840763, guid: c0447d06963aee74987e26f7dee2ff62,
         type: 3}
       propertyPath: m_Parameters.colorGradient.key0.r

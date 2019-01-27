@@ -2053,12 +2053,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e20401a3d27bb49a0a4a39040898a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energy: 50
+  energy: 10
   energyRechargeAmount: 2
-  speed: 5
+  speed: 1
   driftAmount: 200
   boostTimeLeft: 2
-  boostSpeedMultiplier: 3
+  boostSpeedMultiplier: 1
   slowedMultiplier: 0.3
 --- !u!1 &1451072856
 GameObject:
